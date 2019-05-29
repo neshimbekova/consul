@@ -1,4 +1,4 @@
-instance_type	    		=	"t2.large" 
+instance_type	    		=	"t2.micro" 
 key_name	        	=	"app-rsa"   
 ami			        =	"ami-0ff760d16d9497662"  # Centos7  image
 vpc_id		        	=	"vpc-908caaf6"
