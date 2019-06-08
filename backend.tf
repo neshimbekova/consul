@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "acirrustech-iaac"
-    region = "eu-west-1"
+    region = "us-east-1"
     key    = "consul/infra"
   }
 }
