@@ -1,7 +1,7 @@
-resource "aws_route53_record" "consul" {
+resource "aws_route53_record" "consul_01" {
   zone_id = "${var.zone_id}"
   name    = "consul.${var.domain}"
   type    = "A"
   ttl     = "60"
-  records = ["${aws_instance.consul_01.public_ip}"]
+  records = ["${aws_instance.consul.public_ip}"]
 }
