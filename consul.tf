@@ -19,12 +19,12 @@ resource "aws_instance" "consul" {
   #This will help you provision file
   provisioner "file" {
     source      = "config.json"
-    destination = "/tmp/config.json"
+    destination = "/home/neshimbekova/consul/config.json"
   }
 
   provisioner "file" {
     source      = "consul.service"
-    destination = "/tmp/consul.service"
+    destination = "/home/neshimbekova/consul/consul.service"
   }
 
   provisioner "remote-exec" {
