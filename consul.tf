@@ -53,7 +53,7 @@ resource "aws_instance" "consul" {
       "sudo sed -i 's/ad_addr_tobe_replaced/${self.private_ip}/g' /etc/consul.d/config.json",
       "sudo sed -i 's/bind_addr_tobe_replaced/${self.private_ip}/g' /etc/consul.d/config.json",
       "consul_keygen=$(consul keygen)",
-      "sudo sed -i 's/key_tobe_replaced/$consul_keygen' /etc/consul.d/config.json",
+      "sudo sed -i "s/key_tobe_replaced/$consul_keygen/" /etc/consul.d/config.json",
       "sudo cp /tmp/consul.service /etc/systemd/system/",
       "sudo sed -i 's/advertise_tobe_replaced/${self.private_ip}/g' /etc/systemd/system/consul.service",
       "sudo sed -i 's/bind_tobe_replaced/${self.private_ip}/g' /etc/systemd/system/consul.service",
