@@ -1,5 +1,5 @@
-resource "aws_security_group" "allow_ssh_and_consul" {
-  name        = "allow_ssh_and_consul"
+resource "aws_security_group" "allow_ssh_consul" {
+  name        = "allow_ssh_consul"
   description = "Allow SSH and consul"
   vpc_id      = "${var.vpc_id}"
 
