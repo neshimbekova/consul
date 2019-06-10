@@ -2,7 +2,7 @@ provider "aws" {
   region = "${var.region}"
 }
 
-resource "aws_instance" "consul" {
+resource "aws_instance" "consul_1" {
   instance_type               = "${var.instance_type}"
   ami                         = "${var.ami}"
   key_name                    = "${var.key_name}"
