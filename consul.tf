@@ -19,12 +19,12 @@ resource "aws_instance" "consul" {
   #This will help you provision file
   provisioner "file" {
     source      = "config.json"
-    destination = "/home/neshimbekova/consul/config.json"
+    destination = "/tmp/config.json"
   }
 
   provisioner "file" {
     source      = "consul.service"
-    destination = "/home/neshimbekova/consul/consul.service"
+    destination = "/tmp/consul.service"
   }
 
   provisioner "remote-exec" {
@@ -42,12 +42,12 @@ resource "aws_instance" "consul" {
       "sudo chown -R consul:consul /var/lib/consul /etc/consul.d",
       "sudo chmod -R 775 /var/lib/consul /etc/consul.d",
       "sudo cat >> EOF >> /etc/hosts ${self.private_ip} consul.acirrustech.com consul-01 EOF",
-      "sudo cp /home/neshimbekova/consul/config.json /etc/consul.d/",
+      "sudo cp /tmp/config.json /etc/consul.d/",
       "sudo sed -i 's/ad_addr_tobe_replaced/${self.private_ip}/g' /etc/consul.d/config.json",
       "sudo sed -i 's/bind_addr_tobe_replaced/${self.private_ip}/g' /etc/consul.d/config.json",
       "consul_keygen=$(consul keygen)",
       "sudo sed -i 's/key_tobe_replaced/$consul_keygen' /etc/consul.d/config.json",
-      "sudo cp /home/neshimbekova/consul/consul.service /etc/systemd/system/",
+      "sudo cp /tmp/consul.service /etc/systemd/system/",
       "sudo sed -i 's/advertise_tobe_replaced/${self.private_ip}/g' /etc/systemd/system/consul.service",
       "sudo sed -i 's/bind_tobe_replaced/${self.private_ip}/g' /etc/systemd/system/consul.service",
       "sudo systemctl start consul",
