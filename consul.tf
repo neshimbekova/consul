@@ -48,7 +48,7 @@ resource "aws_instance" "consul" {
       "sudo mkdir -p /var/lib/consul /etc/consul.d",
       "sudo chown -R consul:consul /var/lib/consul /etc/consul.d",
       "sudo chmod -R 775 /var/lib/consul /etc/consul.d",
-      "sudo echo ${self.private_ip} consul.acirrustech.com consul-01 | tee -a /etc/hosts",
+      "sudo echo ${self.private_ip} consul.acirrustech.com consul-01 | sudo tee -a /etc/hosts",
       "sudo cp /tmp/config.json /etc/consul.d/",
       "sudo sed -i 's/ad_addr_tobe_replaced/${self.private_ip}/g' /etc/consul.d/config.json",
       "sudo sed -i 's/bind_addr_tobe_replaced/${self.private_ip}/g' /etc/consul.d/config.json",
