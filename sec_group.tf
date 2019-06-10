@@ -2,7 +2,7 @@ resource "aws_security_group" "allow_ssh_and_consul" {
   name        = "allow_ssh_and_consul"
   description = "Allow SSH and consul"
   vpc_id      = "${var.vpc_id}"
-
+}
   ingress {
     from_port   = 22
     to_port     = 22
