@@ -7,7 +7,7 @@ resource "aws_instance" "consul" {
   ami                         = "${var.ami}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
-  security_groups             = ["allow_ssh_and_consule"]
+  security_groups             = ["allow_ssh_and_consul"]
 
   connection {
     host        = "${self.public_ip}"
