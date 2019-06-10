@@ -2,12 +2,12 @@ provider "aws" {
   region = "${var.region}"
 }
 
-resource "aws_instance" "consul_1" {
+resource "aws_instance" "consul" {
   instance_type               = "${var.instance_type}"
   ami                         = "${var.ami}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
-  security_groups             = ["allow_ssh_and_consul"]
+  security_groups             = ["allow_ssh_and_consule"]
 
   connection {
     host        = "${self.public_ip}"
