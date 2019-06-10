@@ -3,5 +3,5 @@ resource "aws_route53_record" "consul" {
   name    = "consul.${var.domain}"
   type    = "A"
   ttl     = "60"
-  records = ["${aws_instance.consul.public_ip}"]
+  records = ["${aws_instance.consul_01.public_ip}"]
 }
