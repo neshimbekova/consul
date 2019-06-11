@@ -9,24 +9,17 @@ resource "aws_instance" "consul" {
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_consul"]
 
-  #This will help you provision file
-  provisioner "file" {
-    source      = "config.json"
-    destination = "/tmp/config.json"
-
-    connection {
-      host        = "${self.public_ip}"
-      type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
-    }
-  }
-
   connection {
     host        = "${self.public_ip}"
     type        = "ssh"
     user        = "${var.user}"
     private_key = "${file(var.ssh_key_location)}"
+  }
+
+  #This will help you provision file
+  provisioner "file" {
+    source      = "config.json"
+    destination = "/tmp/config.json"
   }
 
   provisioner "file" {
@@ -60,5 +53,9 @@ resource "aws_instance" "consul" {
       "sudo systemctl start consul",
       "sudo systemctl enable consul",
     ]
+  }
+
+  tags = {
+    Name = "Consul"
   }
 }
