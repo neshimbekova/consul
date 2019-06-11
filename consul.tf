@@ -39,8 +39,6 @@ resource "aws_instance" "consul" {
 
     inline = [
       "sudo hostnamectl set-hostname consul.acirrustech.com --static",
-      "sudo systemctl disable firewalld",
-      "sudo systemctl stop firewalld",
       "sudo setenforce 0",
       "sudo sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config",
       "sudo yum install unzip  wget -y",
@@ -50,10 +48,10 @@ resource "aws_instance" "consul" {
       "sudo groupadd --system consul",
       "sudo useradd -s /sbin/nologin --system -g consul consul",
       "sudo mkdir -p /var/lib/consul /etc/consul.d",
-      "sudo chown -R consul:consul /var/lib/consul /etc/consul.d",
-      "sudo chmod -R 775 /var/lib/consul /etc/consul.d",
       "sudo echo ${self.private_ip} consul.acirrustech.com consul-01 | sudo tee -a /etc/hosts",
       "sudo cp /tmp/config.json /etc/consul.d/",
+      "sudo chown -R consul:consul /var/lib/consul /etc/consul.d",
+      "sudo chmod -R 775 /var/lib/consul /etc/consul.d",
       "sudo sed -i 's/ad_addr_tobe_replaced/${self.private_ip}/g' /etc/consul.d/config.json",
       "sudo sed -i 's/bind_addr_tobe_replaced/${self.private_ip}/g' /etc/consul.d/config.json",
       "consul_keygen=$(consul keygen)",
