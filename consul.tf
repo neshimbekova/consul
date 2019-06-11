@@ -22,18 +22,17 @@ resource "aws_instance" "consul" {
     }
   }
 
-  connection {
-    host        = "${self.public_ip}"
-    type        = "ssh"
-    user        = "${var.user}"
-    private_key = "${file(var.ssh_key_location)}"
-  }
+  # connection {
+  #   host        = "${self.public_ip}"
+  #   type        = "ssh"
+  #   user        = "${var.user}"
+  #   private_key = "${file(var.ssh_key_location)}"
+  # }
 
   provisioner "file" {
     source      = "consul.service"
     destination = "/tmp/consul.service"
   }
-
   provisioner "remote-exec" {
     # connection {  #   host        = "${self.public_ip}"  #   type        = "ssh"  #   user        = "${var.user}"  #   private_key = "${file(var.ssh_key_location)}"    # }
 
