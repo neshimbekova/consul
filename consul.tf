@@ -39,6 +39,8 @@ resource "aws_instance" "consul" {
 
     inline = [
       "sudo hostnamectl set-hostname consul.acirrustech.com --static",
+      "setenforce 0",
+      "sudo sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config",
       "sudo yum install unzip  wget -y",
       "sudo wget https://releases.hashicorp.com/consul/1.5.1/consul_1.5.1_linux_amd64.zip",
       "sudo unzip consul_1.5.1_linux_amd64.zip",
