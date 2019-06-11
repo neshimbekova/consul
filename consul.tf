@@ -39,6 +39,8 @@ resource "aws_instance" "consul" {
 
     inline = [
       "sudo hostnamectl set-hostname consul.acirrustech.com --static",
+      "sudo systemctl disable firewalld",
+      "sudo systemctl stop firewalld",
       "setenforce 0",
       "sudo sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config",
       "sudo yum install unzip  wget -y",
