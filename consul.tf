@@ -35,8 +35,6 @@ resource "aws_instance" "consul" {
   }
 
   provisioner "remote-exec" {
-    # connection {  #   host        = "${self.public_ip}"  #   type        = "ssh"  #   user        = "${var.user}"  #   private_key = "${file(var.ssh_key_location)}"    # }
-
     inline = [
       "sudo hostnamectl set-hostname consul.acirrustech.com --static",
       "sudo setenforce 0",
