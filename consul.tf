@@ -41,7 +41,7 @@ resource "aws_instance" "consul" {
       "sudo hostnamectl set-hostname consul.acirrustech.com --static",
       "sudo systemctl disable firewalld",
       "sudo systemctl stop firewalld",
-      "setenforce 0",
+      "sudo setenforce 0",
       "sudo sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config",
       "sudo yum install unzip  wget -y",
       "sudo wget https://releases.hashicorp.com/consul/1.5.1/consul_1.5.1_linux_amd64.zip",
